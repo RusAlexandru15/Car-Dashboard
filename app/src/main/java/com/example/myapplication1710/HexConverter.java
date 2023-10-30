@@ -13,6 +13,7 @@ public class HexConverter {
         return num;
     }
 
+
     //speed value conversion
     public static int twoHexConvert(String hexNumber) {
         if(hexNumber.length()!=2)

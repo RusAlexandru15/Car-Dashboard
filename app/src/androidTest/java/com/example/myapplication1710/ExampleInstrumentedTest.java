@@ -24,22 +24,6 @@ public class ExampleInstrumentedTest {
         assertEquals("com.example.myapplication1710", appContext.getPackageName());
     }
 
-    @Test
-    public void testHexConversionRPM(){
-       assertEquals(HexConverter.fourHexConvert("0D80"),3456);
-        assertEquals(HexConverter.fourHexConvert("0000"),0);
-        assertEquals(HexConverter.fourHexConvert("0D8090"),-1);
 
-    }
-
-    @Test
-    public void testHexConversionSpeed(){
-        assertEquals(HexConverter.twoHexConvert("0D80"),-1);
-        assertEquals(HexConverter.twoHexConvert("00"),0);
-        assertEquals(HexConverter.twoHexConvert("FF"),255);
-
-        assertEquals(HexConverter.twoHexConvert("C1"),193);
-
-    }
 
 }

@@ -49,8 +49,6 @@ public class BluetoothService {
 
         this.receivedMessages=new ArrayList<>();
 
-        //dataStream
-        //this.dataStream=new DataStream();
     }
 
 
@@ -69,13 +67,8 @@ public class BluetoothService {
 
         //doar daca am conexiune trimit request-uri
         if(this.connectionSuccess) {
-
             this.openStreams();
-            //this.dataStream.setBluetoothSocket(this.bluetoothSocket);
-            //this.dataStream.openStreams();
-           this.requestInitCommands();
-            //incerc v2
-            //this.dataStream.requestInitCommands();
+            this.requestInitCommands();
         }
     }
 
@@ -94,13 +87,7 @@ public class BluetoothService {
         return this.connectionSuccess;
     }
 
-    public OutputStream getOutputStream() {
-        return outputStream;
-    }
 
-    public InputStream getInputStream() {
-        return inputStream;
-    }
 
     //*************************** DEBUGGING FUNCTIONS ************************************
     //pentru debugging
@@ -157,21 +144,19 @@ public class BluetoothService {
         return false;
     }
 
-    //REFACTOR IN ALTA CLASAAA
+
 
     // Closes the client socket and causes the thread to finish.
     public void closeConnection() {
         try {
             this.bluetoothSocket.close();
             this.closeStreams();
-           // this.dataStream.setBluetoothSocket(null);
-           // this.dataStream.closeStreams();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
+    //********************* open/close streams *********************************
 
     //functii data stream
     public void openStreams() {
@@ -222,18 +207,18 @@ public class BluetoothService {
         this.sendAndReceive("AT SP6");
     }
 
+
     String requestRPM(){
-        return this.sendAndReceive("010C");
+        if(this.connectionSuccess)
+           return this.sendAndReceive("010C");
+
+        else return "0000";
     }
 
-
-
-
-
-
-
-
-
-
+    String requestSpeed(){
+        if(this.connectionSuccess)
+            return this.sendAndReceive("010D");
+        else return "00";
+    }
 
 }

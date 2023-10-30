@@ -1,7 +1,6 @@
 package com.example.myapplication1710;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,12 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
 //campurile clasei MainActivity
-    private TextView txtHello;
+    private TextView txtRPM;
+
+    private TextView txtSpeed;
     private Handler handler;
 
     private VehicleDataTask vehicleDataTask;
     private BluetoothService bluetoothService;
-    private  EngineDataStream engineDataStream;
 
 
 
@@ -40,35 +40,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //partea de AUtoincrement
-        this.txtHello = this.findViewById(R.id.textView1);
+        //binding intre campuri si textView-urile din pagina
+        this.txtRPM = this.findViewById(R.id.textView1);
+        this.txtSpeed = this.findViewById(R.id.textView2);
         this.handler = new Handler();
 
-        this.engineDataStream=new EngineDataStream();
-
-        this.vehicleDataTask = new VehicleDataTask(this.handler, this.engineDataStream, this.txtHello);
-
+        this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM);
     }
 
 
 
     /**event handler
-      listener pentru BUTON !!! declarata in atributele butonului
+      listener pentru BUTON (DOAR PENTRU DEBUGGING) !!! declarata in atributele butonului
       View .. v e INSTANTA BUTONULUI
      POTI din View sa faci CAST la Button si ai alte functii de button*/
     @SuppressLint("SetTextI18n")
     public void onBtnClick(View v){
-
         int buttonId = v.getId();
 
         new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Paired Devices RPM")
-                //.setMessage(this.bluetoothService.requestRPM())
-                .setMessage(this.engineDataStream.requestRPM())
+                .setTitle("Paired Devices Speed")
+                .setMessage(this.bluetoothService.requestSpeed())
                 .setPositiveButton("OK", null)
                 .show();
 
     }
+
+
 
     // LISTENER butonul de conexiune cu device-ul
     public void connectToDevice(View view) {
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         //start the connection
         this.bluetoothService.serveConnection();
 
-        //send initialization commands
+        //send initialization commands ATZ& ATSP6
         this.bluetoothService.requestInitCommands();
 
         if(this.bluetoothService.isConnected()) {
@@ -92,13 +90,10 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("OK", null)
                     .show();
             button.setEnabled(false);
-            //set fields for engineDataStream
-            this.engineDataStream.setInputStream(this.bluetoothService.getInputStream());
-            this.engineDataStream.setOutputStream(this.bluetoothService.getOutputStream());
-            this.engineDataStream.setConnectionSuccess(true);
 
-            //setez la vehicleDataTask engineStream-ul
-            this.vehicleDataTask.setEngineDataStream(this.engineDataStream);
+
+            //setez la vehicleDataTask bluetoothService
+            this.vehicleDataTask.setBluetoothService(this.bluetoothService);
         }
         else {
             new AlertDialog.Builder(MainActivity.this)
@@ -109,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 
 
