@@ -1,9 +1,11 @@
 package com.example.myapplication1710;
 
+
+
+
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.widget.TextView;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,21 +15,32 @@ public class VehicleDataTask implements Runnable {
     //pentru Handler ai doua importuri ,doar unu merge
     private Handler handler;
     private int currentRpm;
-    private TextView textView;
+    private int currentSpeed;
+
+    private TextView textRPM;
+    private TextView textSpeed;
     private BluetoothService bluetoothService;
 
 
+
+
     //constructor
-    public VehicleDataTask(Handler handler, TextView textView) {
+
+    public VehicleDataTask(Handler handler, TextView textRPM, TextView textSpeed) {
         this.handler = handler;
 
-        this.textView = textView;
+        this.textRPM = textRPM;
+
+        this.textSpeed=textSpeed;
 
         //initializez cu null
         this.bluetoothService = null;
 
-        //engine starts at 900rpm
+
+        
+        //engine starts at 900rpm with 0km/h
         this.currentRpm = 900;
+        this.currentSpeed=0;
     }
 
 
@@ -44,12 +57,14 @@ public class VehicleDataTask implements Runnable {
     public void run() {
 
         if (this.bluetoothService == null){
-            textView.setText(String.valueOf(this.currentRpm));
+            this.textRPM.setText(String.valueOf(this.currentRpm));
+            this.textSpeed.setText(String.valueOf(this.currentSpeed));
             handler.postDelayed(this, 500);
             //return
         }
 
         else {
+
             String rpm = this.bluetoothService.requestRPM();
 
 
@@ -60,11 +75,12 @@ public class VehicleDataTask implements Runnable {
 
             //870 de exp se rotunjeste la 900
             if(realrpmValue<900)
-                realrpmValue=900;
+              realrpmValue=900;
 
             //afisez  prima data realrpm dupa, rpmValue
-            textView.setText(String.valueOf(realrpmValue));
-            handler.postDelayed(this, 500); // Actualizează TextView-ul la fiecare jumate de  secundă
+
+            textRPM.setText(String.valueOf(realrpmValue));
+            handler.postDelayed(this, 500);
         }
     }
 

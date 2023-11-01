@@ -43,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
         //binding intre campuri si textView-urile din pagina
         this.txtRPM = this.findViewById(R.id.textView1);
         this.txtSpeed = this.findViewById(R.id.textView2);
+
         this.handler = new Handler();
 
-        this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM);
+        this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM,this.txtSpeed);
     }
 
 
@@ -57,12 +58,17 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void onBtnClick(View v){
         int buttonId = v.getId();
-
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Paired Devices Speed")
+                .setMessage("salut")
+                .setPositiveButton("OK", null)
+                .show();
+        /*
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Paired Devices Speed")
                 .setMessage(this.bluetoothService.requestSpeed())
                 .setPositiveButton("OK", null)
-                .show();
+                .show();*/
 
     }
 

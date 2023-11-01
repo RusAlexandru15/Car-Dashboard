@@ -90,17 +90,7 @@ public class BluetoothService {
 
 
     //*************************** DEBUGGING FUNCTIONS ************************************
-    //pentru debugging
-    @SuppressLint("MissingPermission")
-    String showElm327Name(){
-        //neaparat sterge
-        this.findElm327();
 
-        if(this.elm327Device ==null)
-            return "elm327 not found";
-        else
-            return this.elm327Device.getName();
-    }
 
     String showConnectionState(){
         if(this.connectionSuccess)
@@ -205,6 +195,7 @@ public class BluetoothService {
         this.sendAndReceive("AT D");
         this.sendAndReceive("AT Z");
         this.sendAndReceive("AT SP6");
+
     }
 
 
