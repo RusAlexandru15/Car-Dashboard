@@ -212,4 +212,10 @@ public class BluetoothService {
         else return "00";
     }
 
+    String requestRPMSpeed(){
+        if(this.connectionSuccess)
+            return this.sendAndReceive("010C0D");
+        else return "00";
+    }
+
 }
