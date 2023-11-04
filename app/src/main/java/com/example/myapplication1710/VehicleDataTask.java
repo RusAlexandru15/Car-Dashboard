@@ -85,7 +85,6 @@ public class VehicleDataTask implements Runnable {
                 this.currentRpm = 900;
 
 
-
             this.textRPM.setText(String.valueOf(this.currentRpm));
             this.textSpeed.setText(String.valueOf(this.currentSpeed));
 
