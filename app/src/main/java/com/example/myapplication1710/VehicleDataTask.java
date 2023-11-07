@@ -1,12 +1,16 @@
 package com.example.myapplication1710;
 
 
+import static java.lang.Math.abs;
+
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
+
+import de.nitri.gauge.Gauge;
 
 
 public class VehicleDataTask implements Runnable {
@@ -15,20 +19,28 @@ public class VehicleDataTask implements Runnable {
     private Handler handler;
     private int currentRpm;
     private int currentSpeed;
+    private float rpmToShow;
+
 
     private TextView textRPM;
     private TextView textSpeed;
+    private Gauge gaugeRpm;
+    private Gauge gaugeSpeed;
     private BluetoothService bluetoothService;
 
 
     //constructor
 
-    public VehicleDataTask(Handler handler, TextView textRPM, TextView textSpeed) {
+    public VehicleDataTask(Handler handler, TextView textRPM, TextView textSpeed ,Gauge gaugeRpm, Gauge gaugeSpeed) {
         this.handler = handler;
 
+        //elemente grafice
         this.textRPM = textRPM;
 
         this.textSpeed = textSpeed;
+
+        this.gaugeRpm =gaugeRpm;
+        this.gaugeSpeed=gaugeSpeed;
 
         //initializez cu null
         this.bluetoothService = null;
@@ -37,6 +49,8 @@ public class VehicleDataTask implements Runnable {
         //engine starts at 900rpm with 0km/h
         this.currentRpm = 900;
         this.currentSpeed = 0;
+        this.rpmToShow=900;
+
 
         //testing gauge
     }
@@ -45,6 +59,7 @@ public class VehicleDataTask implements Runnable {
     public void setBluetoothService(BluetoothService bs) {
         this.bluetoothService = bs;
     }
+
 
 
     //functia care ruleaza pe alt thread trebuie modificata logica
@@ -56,6 +71,18 @@ public class VehicleDataTask implements Runnable {
         if (this.bluetoothService == null) {
             this.textRPM.setText(String.valueOf(this.currentRpm));
             this.textSpeed.setText(String.valueOf(this.currentSpeed));
+
+            this.gaugeRpm.moveToValue((float)this.currentRpm/100);
+            this.gaugeSpeed.moveToValue(this.currentSpeed);
+
+            //for testing
+
+           // this.currentRpm+=150;
+            //if(this.currentRpm>=7000)
+              //  this.currentRpm=0;
+
+            //end for testing
+
             this.handler.postDelayed(this, 500);
             //return
         } else {
@@ -84,12 +111,20 @@ public class VehicleDataTask implements Runnable {
             if (this.currentRpm < 900)
                 this.currentRpm = 900;
 
+            //rotunjire la cel mai apropiat multiplu de 10
+            if(abs(this.currentRpm-this.rpmToShow) >10 )
+                this.rpmToShow=this.currentRpm - (this.currentRpm % 10);
+
+
+
+            this.gaugeRpm.moveToValue( this.rpmToShow/100);
+            this.gaugeSpeed.moveToValue(this.currentSpeed);
 
             this.textRPM.setText(String.valueOf(this.currentRpm));
             this.textSpeed.setText(String.valueOf(this.currentSpeed));
 
             //am modificat la 250
-            this.handler.postDelayed(this, 250);
+            this.handler.postDelayed(this, 400);
         }
     }
 

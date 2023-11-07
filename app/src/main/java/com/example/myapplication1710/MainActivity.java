@@ -9,6 +9,8 @@ import android.os.Handler;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import de.nitri.gauge.Gauge;
+
 
 //tutorial
 //https://www.youtube.com/watch?v=fis26HvvDII&t=2917s&ab_channel=freeCodeCamp.org
@@ -19,12 +21,14 @@ import androidx.appcompat.app.AppCompatActivity;
 /** START POINT APP   one Activity<----> one Page */
 public class MainActivity extends AppCompatActivity {
 
-//campurile clasei MainActivity
+    //elemente grafice
     private TextView txtRPM;
-
     private TextView txtSpeed;
-    private Handler handler;
+    private Gauge gaugeRpm;
+    private Gauge gaugeSpeed;
 
+
+    private Handler handler;
     private VehicleDataTask vehicleDataTask;
     private BluetoothService bluetoothService;
 
@@ -43,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
         //binding intre campuri si textView-urile din pagina
         this.txtRPM = this.findViewById(R.id.textView1);
         this.txtSpeed = this.findViewById(R.id.textView2);
+        this.gaugeRpm=(Gauge)this.findViewById(R.id.gaugerpm);
+        this.gaugeSpeed=(Gauge)this.findViewById(R.id.gaugespeed);
 
         this.handler = new Handler();
 
-        this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM,this.txtSpeed);
+        this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM,this.txtSpeed,this.gaugeRpm,this.gaugeSpeed);
     }
 
 
@@ -57,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
      POTI din View sa faci CAST la Button si ai alte functii de button*/
     @SuppressLint("SetTextI18n")
     public void onBtnClick(View v){
-        int buttonId = v.getId();
-        new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Paired Devices Speed")
-                .setMessage("salut")
-                .setPositiveButton("OK", null)
-                .show();
+
+        //gauge testing
+        this.gaugeSpeed.moveToValue(20);
+
+        //valoarea rpm trebuie /100
+        this.gaugeRpm.moveToValue(25);
         /*
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Paired Devices Speed")
