@@ -35,10 +35,10 @@
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.988"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/gaugerpm"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <Button
         android:id="@+id/button2"
@@ -57,49 +57,75 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="184dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="20dp"
         android:text="speed"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gaugespeed"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.444" />
 
     <de.nitri.gauge.Gauge
         android:id="@+id/gaugespeed"
-        android:layout_width="204dp"
-        android:layout_height="195dp"
+        android:layout_width="235dp"
+        android:layout_height="207dp"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222"
+        app:layout_constraintVertical_bias="0.156"
         gauge:initialValue="0"
         gauge:maxValue="130"
         gauge:minValue="0"
+        gauge:needleShadow="false"
         gauge:totalNicks="140"
         gauge:valuePerNick="1" />
 
     <de.nitri.gauge.Gauge
         android:id="@+id/gaugerpm"
-        android:layout_width="204dp"
-        android:layout_height="195dp"
+        android:layout_width="235dp"
+        android:layout_height="207dp"
         android:layout_gravity="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222"
+        app:layout_constraintVertical_bias="0.156"
         gauge:initialValue="0"
         gauge:maxValue="80"
         gauge:minValue="0"
+        gauge:needleShadow="false"
         gauge:totalNicks="90"
         gauge:valuePerNick="1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="40dp"
+        android:layout_height="21dp"
+        android:text="KM/H"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="66dp"
+        android:layout_height="20dp"
+        android:text="RPM x100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.756"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

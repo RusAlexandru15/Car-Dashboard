@@ -77,10 +77,6 @@ public class VehicleDataTask implements Runnable {
 
             //for testing
 
-           // this.currentRpm+=150;
-            //if(this.currentRpm>=7000)
-              //  this.currentRpm=0;
-
             //end for testing
 
             this.handler.postDelayed(this, 500);
