@@ -9,16 +9,15 @@ import android.os.Handler;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication1710.service.BluetoothService;
+import com.example.myapplication1710.service.GPSService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
 import de.nitri.gauge.Gauge;
 
 
-//tutorial
-//https://www.youtube.com/watch?v=fis26HvvDII&t=2917s&ab_channel=freeCodeCamp.org
 
-//asta ii de 4  orel
-//https://www.youtube.com/watch?v=tZvjSl9dswg&t=2s&ab_channel=CalebCurry
-
-/** START POINT APP   one Activity<----> one Page */
 public class MainActivity extends AppCompatActivity {
 
     //elemente grafice
@@ -31,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private VehicleDataTask vehicleDataTask;
     private BluetoothService bluetoothService;
+
+    //gps
+
+    private FusedLocationProviderClient fusedLocationClient;
+    private TextView latView;
+    private TextView longView;
+    private GPSService gpsService;
 
 
 
@@ -53,14 +59,23 @@ public class MainActivity extends AppCompatActivity {
         this.handler = new Handler();
 
         this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM,this.txtSpeed,this.gaugeRpm,this.gaugeSpeed);
+
+
+        //gps
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        this.latView = findViewById(R.id.latitude);
+        this.longView = findViewById(R.id.longitude);
+
+        this.gpsService =new GPSService(fusedLocationClient);
+        this.gpsService.setLongView(longView);
+        this.gpsService.setLatView(latView);
     }
 
 
 
     /**event handler
-      listener pentru BUTON (DOAR PENTRU DEBUGGING) !!! declarata in atributele butonului
-      View .. v e INSTANTA BUTONULUI
-     POTI din View sa faci CAST la Button si ai alte functii de button*/
+      listener pentru BUTON (DOAR PENTRU DEBUGGING)
+      View .. v e INSTANTA BUTONULUI*/
     @SuppressLint("SetTextI18n")
     public void onBtnClick(View v){
 

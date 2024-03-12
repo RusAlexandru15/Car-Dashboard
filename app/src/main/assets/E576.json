@@ -1,0 +1,61 @@
+{
+  "road_name": "E576",
+  "segments": [
+    {
+      "id_segment": 0,
+      "geopoint_1": {"latitude": 46.8234135, "longitude": 23.7424555},
+      "geopoint_2": {"latitude": 46.8227519, "longitude": 23.7466463},
+      "geopoint_3": {"latitude": 46.8366683, "longitude": 23.7488431},
+      "geopoint_4": {"latitude": 46.8373299, "longitude": 23.7446523},
+      "speed_limit": "50"
+    },
+    {
+      "id_segment": 1,
+      "geopoint_1": {"latitude": 46.8383412, "longitude": 23.7449961},
+      "geopoint_2": {"latitude": 46.8360146, "longitude": 23.7485439},
+      "geopoint_3": {"latitude": 46.8772111, "longitude": 23.7755595},
+      "geopoint_4": {"latitude": 46.8795377, "longitude": 23.7720117},
+      "speed_limit": "70"
+    },
+    {
+      "id_segment": 2,
+      "geopoint_1": {"latitude": 46.8795084, "longitude": 23.7720157},
+      "geopoint_2": {"latitude": 46.8776538, "longitude": 23.7758315},
+      "geopoint_3": {"latitude": 46.8891309, "longitude": 23.78141},
+      "geopoint_4": {"latitude": 46.8909855, "longitude": 23.7775942},
+      "speed_limit": "100"
+    },
+    {
+      "id_segment": 3,
+      "geopoint_1": {"latitude": 46.8895873, "longitude": 23.7774659},
+      "geopoint_2": {"latitude": 46.8909263, "longitude": 23.7814917},
+      "geopoint_3": {"latitude": 46.8953121, "longitude": 23.7800329},
+      "geopoint_4": {"latitude": 46.8939731, "longitude": 23.7760071},
+      "speed_limit": "100"
+    },
+    {
+      "id_segment": 4,
+      "geopoint_1": {"latitude": 46.8940979, "longitude": 23.7759273},
+      "geopoint_2": {"latitude": 46.8955421, "longitude": 23.7799165},
+      "geopoint_3": {"latitude": 46.9076566, "longitude": 23.7755309},
+      "geopoint_4": {"latitude": 46.9062124, "longitude": 23.7715417},
+      "speed_limit": "50"
+    },
+    {
+      "id_segment": 5,
+      "geopoint_1": {"latitude": 46.9081182, "longitude": 23.7717063},
+      "geopoint_2": {"latitude": 46.906099, "longitude": 23.7754377},
+      "geopoint_3": {"latitude": 46.926356, "longitude": 23.7864001},
+      "geopoint_4": {"latitude": 46.9283752, "longitude": 23.7826687},
+      "speed_limit": "50"
+    },
+    {
+      "id_segment": 6,
+      "geopoint_1": {"latitude": 46.9282968, "longitude": 23.7826228},
+      "geopoint_2": {"latitude": 46.9267214, "longitude": 23.7865622},
+      "geopoint_3": {"latitude": 46.9402884, "longitude": 23.7919879},
+      "geopoint_4": {"latitude": 46.9418638, "longitude": 23.7880485},
+      "speed_limit": "100"
+    }
+  ]
+}

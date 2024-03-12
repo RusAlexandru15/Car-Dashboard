@@ -1,4 +1,4 @@
-package com.example.myapplication1710;
+package com.example.myapplication1710.utils;
 
 public class HexConverter {
 

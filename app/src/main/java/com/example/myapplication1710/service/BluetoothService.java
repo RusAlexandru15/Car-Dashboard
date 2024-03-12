@@ -1,4 +1,4 @@
-package com.example.myapplication1710;
+package com.example.myapplication1710.service;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -54,7 +54,7 @@ public class BluetoothService {
 
     //main connection function ... to be called from outside
     @SuppressLint("MissingPermission")
-    void serveConnection(){
+    public  void serveConnection(){
         //search elm from paired device list
         this.findElm327();
 
@@ -74,7 +74,7 @@ public class BluetoothService {
 
 
     @SuppressLint("MissingPermission")
-    void findElm327() {
+    public void findElm327() {
         for (BluetoothDevice device : bluetoothAdapter.getBondedDevices()) {
             if(Objects.equals(device.getName(), this.elm327Name)) {
                 this.elm327Device = device;
@@ -92,7 +92,7 @@ public class BluetoothService {
     //*************************** DEBUGGING FUNCTIONS ************************************
 
 
-    String showConnectionState(){
+    public  String showConnectionState(){
         if(this.connectionSuccess)
             return "CONNECTED SUCCESSFULLY";
         else
@@ -100,7 +100,7 @@ public class BluetoothService {
     }
 
     //afisez toate mesajele venite de la elm327
-    String showReceivedMessages(){
+    public  String showReceivedMessages(){
         StringBuilder message= new StringBuilder();
         message.append("bunaziua");
         for (String str : this.receivedMessages)
@@ -191,7 +191,7 @@ public class BluetoothService {
     }
 
 
-    void requestInitCommands(){
+    public  void requestInitCommands(){
         this.sendAndReceive("AT D");
         this.sendAndReceive("AT Z");
         this.sendAndReceive("AT SP6");
@@ -199,20 +199,20 @@ public class BluetoothService {
     }
 
 
-    String requestRPM(){
+    public  String requestRPM(){
         if(this.connectionSuccess)
            return this.sendAndReceive("010C");
 
         else return "0000";
     }
 
-    String requestSpeed(){
+    public String requestSpeed(){
         if(this.connectionSuccess)
             return this.sendAndReceive("010D");
         else return "00";
     }
 
-    String requestRPMSpeed(){
+   public String requestRPMSpeed(){
         if(this.connectionSuccess)
             return this.sendAndReceive("010C0D");
         else return "00";

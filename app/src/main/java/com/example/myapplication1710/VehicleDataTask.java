@@ -7,6 +7,9 @@ import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.widget.TextView;
 
+import com.example.myapplication1710.service.BluetoothService;
+import com.example.myapplication1710.utils.HexConverter;
+
 import java.util.Arrays;
 import java.util.List;
 
