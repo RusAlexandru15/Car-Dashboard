@@ -1,5 +1,6 @@
 package com.example.myapplication1710;
 import android.annotation.SuppressLint;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,8 +10,10 @@ import android.os.Handler;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication1710.electronic_horizon.Road;
 import com.example.myapplication1710.service.BluetoothService;
 import com.example.myapplication1710.service.GPSService;
+import com.example.myapplication1710.utils.JsonParser;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
@@ -32,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothService bluetoothService;
 
     //gps
-
     private FusedLocationProviderClient fusedLocationClient;
     private TextView latView;
     private TextView longView;
     private GPSService gpsService;
+    private TextView segIdView;
+
+
+    //Electronic Horizon
+    private Road road;
 
 
 
@@ -66,9 +73,19 @@ public class MainActivity extends AppCompatActivity {
         this.latView = findViewById(R.id.latitude);
         this.longView = findViewById(R.id.longitude);
 
+        this.segIdView=findViewById(R.id.seg_id);
+
         this.gpsService =new GPSService(fusedLocationClient);
         this.gpsService.setLongView(longView);
         this.gpsService.setLatView(latView);
+        //in loc de segView urmeaza imageView!!
+        this.gpsService.setSegView(segIdView);
+
+
+        //initializare drum
+        AssetManager assetManager = getAssets();
+        road = JsonParser.readJSONFile(assetManager, "E576.json");
+        this.gpsService.setCurrentRoad(road); //setez drumul lui gps service
     }
 
 
@@ -91,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("OK", null)
                 .show();*/
 
+        //TEST pt debug afisez toString-ul drumului
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("road")
+                .setMessage(this.road.toString())
+                .setPositiveButton("OK", null)
+                .show();
     }
 
 

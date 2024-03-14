@@ -5,8 +5,9 @@ import android.location.Location;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-import java.util.Objects;
 
+
+import com.example.myapplication1710.electronic_horizon.Road;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -16,9 +17,10 @@ public class GPSService {
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
-    private TextView latView, longView;
+    private TextView latView, longView,segView;
 
 
+    private Road currentRoad;
     private double segLatitude;
     private double segLongitude;
 
@@ -65,7 +67,7 @@ public class GPSService {
                     String f_speed =  df.format( speed);
 
 
-                    if(latView!=null && longView!=null ) {
+                    if(latView!=null && longView!=null && segView!=null ) {
                         //afisez pe ecran
                         latView.setText(String.valueOf(latitude));
                         longView.setText(String.valueOf(longitude));
@@ -75,9 +77,13 @@ public class GPSService {
                         segLongitude=longitude;
 
 
-                        //update RULES ZONE
+                        //update RULES ZONE am obiectul ROAD de care ma folosesc
+                        if(currentRoad != null){
+                            int current_segment=currentRoad.findCurrentSegment(segLatitude,segLongitude);
+                            segView.setText(String.valueOf(current_segment));
+                            //in loc de segView urmeaza imageView
 
-
+                        }
                     }
                 }
             }
@@ -96,6 +102,10 @@ public class GPSService {
     public void setLongView(TextView longView) {
         this.longView = longView;
     }
+
+    public void setSegView(TextView segView){this.segView=segView;}
+
+    public void setCurrentRoad(Road road){this.currentRoad=road;}
 
 
 
