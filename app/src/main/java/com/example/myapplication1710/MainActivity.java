@@ -4,6 +4,7 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Handler;
 
@@ -42,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView segIdView;
 
 
+
     //Electronic Horizon
     private Road road;
+
+    //SL image
+    private ImageView slView;
 
 
 
@@ -67,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         this.vehicleDataTask = new VehicleDataTask(this.handler, this.txtRPM,this.txtSpeed,this.gaugeRpm,this.gaugeSpeed);
 
+        //init SL_View
+        this.slView =findViewById(R.id.sl_imageView);
 
         //gps
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -75,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
 
         this.segIdView=findViewById(R.id.seg_id);
 
-        this.gpsService =new GPSService(fusedLocationClient);
+        this.gpsService =new GPSService(fusedLocationClient,slView);
         this.gpsService.setLongView(longView);
         this.gpsService.setLatView(latView);
         //in loc de segView urmeaza imageView!!
         this.gpsService.setSegView(segIdView);
+        //this.gpsService.setSlView(slView);
 
 
         //initializare drum

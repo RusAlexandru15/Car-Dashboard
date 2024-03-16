@@ -3,6 +3,7 @@ package com.example.myapplication1710;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import com.example.myapplication1710.electronic_horizon.GeoPoint;
 import com.example.myapplication1710.electronic_horizon.Road;
@@ -161,6 +162,14 @@ public class SegmentsUnitTest {
         int seg_id60=road.findCurrentSegment(  46.9277928, 23.7846978);
         assertTrue(6== seg_id60 && 100 ==road.findCurrentSpeedLimit());
 
+    }
+
+
+    @Test
+    public void trebe_sters(){
+        double speed_d = 30.19899;
+        int speed_i=(int)speed_d;
+        assertEquals(30, speed_i);
     }
 
 
