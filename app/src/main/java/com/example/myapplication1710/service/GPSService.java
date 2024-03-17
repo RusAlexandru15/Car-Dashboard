@@ -64,10 +64,10 @@ public class GPSService {
                     double speed =0;
                     int ego_speed_i =0;
 
+
                     if(location.hasSpeed()) {
                         speed = location.getSpeed(); //in m/s
                         speed =3.6* speed; //in km/h
-
                         ego_speed_i=(int)speed;
                     }
 
@@ -95,63 +95,11 @@ public class GPSService {
                             segView.setText(String.valueOf(current_segment_id));
 
 
-                            if (current_segment_id != -1) {
-                                if (current_speed_offset < 10)
-                                    switch (current_speed_limit) {
-                                        case 30:
-                                            slView.setImageResource(R.drawable.sll_30_normal);
-                                            break;
-                                        case 50:
-                                            slView.setImageResource(R.drawable.sll_50_normal);
-                                            break;
-                                        case 60:
-                                            slView.setImageResource(R.drawable.sll_60_normal);
-                                            break;
-                                        case 70:
-                                            slView.setImageResource(R.drawable.sll_70_normal);
-                                            break;
-                                        case 90:
-                                            slView.setImageResource(R.drawable.sll_90_normal);
-                                            break;
-                                        case 100:
-                                            slView.setImageResource(R.drawable.sll_100_normal);
-                                            break;
-                                        case 130:
-                                            slView.setImageResource(R.drawable.sll_130_normal);
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                else
-                                    switch (current_speed_limit) {
-                                        case 30:
-                                            slView.setImageResource(R.drawable.sll_30_warning);
-                                            break;
-                                        case 50:
-                                            slView.setImageResource(R.drawable.sll_50_warning);
-                                            break;
-                                        case 60:
-                                            slView.setImageResource(R.drawable.sll_60_warning);
-                                            break;
-                                        case 70:
-                                            slView.setImageResource(R.drawable.sll_70_warning);
-                                            break;
-                                        case 90:
-                                            slView.setImageResource(R.drawable.sll_90_warning);
-                                            break;
-                                        case 100:
-                                            slView.setImageResource(R.drawable.sll_100_warning);
-                                            break;
-                                        case 130:
-                                            slView.setImageResource(R.drawable.sll_130_warning);
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                            }
+                            //if  current_segment_id != -1 .. cu switch-urile
+                            updateSLRule(current_segment_id,current_speed_limit,current_speed_offset);
 
-
-
+                            //PT TESTARE
+                            //updateSLRule(0,50,70);
 
 
                         }
@@ -164,6 +112,62 @@ public class GPSService {
     }
 
 
+    public void updateSLRule(int current_segment_id,int current_speed_limit,int current_speed_offset){
+        if (current_segment_id != -1) {
+            if (current_speed_offset < 10)
+                switch (current_speed_limit) {
+                    case 30:
+                        slView.setImageResource(R.drawable.sll_30_normal);
+                        break;
+                    case 50:
+                        slView.setImageResource(R.drawable.sll_50_normal);
+                        break;
+                    case 60:
+                        slView.setImageResource(R.drawable.sll_60_normal);
+                        break;
+                    case 70:
+                        slView.setImageResource(R.drawable.sll_70_normal);
+                        break;
+                    case 90:
+                        slView.setImageResource(R.drawable.sll_90_normal);
+                        break;
+                    case 100:
+                        slView.setImageResource(R.drawable.sll_100_normal);
+                        break;
+                    case 130:
+                        slView.setImageResource(R.drawable.sll_130_normal);
+                        break;
+                    default:
+                        break;
+                }
+            else
+                switch (current_speed_limit) {
+                    case 30:
+                        slView.setImageResource(R.drawable.sll_30_warning);
+                        break;
+                    case 50:
+                        slView.setImageResource(R.drawable.sll_50_warning);
+                        break;
+                    case 60:
+                        slView.setImageResource(R.drawable.sll_60_warning);
+                        break;
+                    case 70:
+                        slView.setImageResource(R.drawable.sll_70_warning);
+                        break;
+                    case 90:
+                        slView.setImageResource(R.drawable.sll_90_warning);
+                        break;
+                    case 100:
+                        slView.setImageResource(R.drawable.sll_100_warning);
+                        break;
+                    case 130:
+                        slView.setImageResource(R.drawable.sll_130_warning);
+                        break;
+                    default:
+                        break;
+                }
+        }
+    }
 
 
     public void setLatView(TextView latView) {

@@ -1,5 +1,4 @@
 package com.example.myapplication1710;
-import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         this.gpsService.setLatView(latView);
         //in loc de segView urmeaza imageView!!
         this.gpsService.setSegView(segIdView);
-        //this.gpsService.setSlView(slView);
+        //this.gpsService.setSlView(slView); mutat in constructor
 
 
         //initializare drum
@@ -98,31 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /**event handler
-      listener pentru BUTON (DOAR PENTRU DEBUGGING)
-      View .. v e INSTANTA BUTONULUI*/
-    @SuppressLint("SetTextI18n")
-    public void onBtnClick(View v){
 
-        //gauge testing
-        this.gaugeSpeed.moveToValue(20);
 
-        //valoarea rpm trebuie /100
-        this.gaugeRpm.moveToValue(25);
-        /*
-        new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Paired Devices Speed")
-                .setMessage(this.bluetoothService.requestSpeed())
-                .setPositiveButton("OK", null)
-                .show();*/
-
-        //TEST pt debug afisez toString-ul drumului
-        new AlertDialog.Builder(MainActivity.this)
-                .setTitle("road")
-                .setMessage(this.road.toString())
-                .setPositiveButton("OK", null)
-                .show();
-    }
 
 
 
@@ -169,15 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     /** ANDROID ACTIVITY LIFE CYCLE */
-
-    //NU NUMARA FARA ASTA
-    // Pornirea incrementării automate când activitatea(pagina) este afișată
     @Override
     protected void onResume() {
         super.onResume();
-
-        //partea de post trebuie sa fie un RUNNABLE , in cazul nostru autoIncrement
-        //post porneste executia thread-ului
         this.handler.post(vehicleDataTask);
     }
 
@@ -188,8 +158,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacks(vehicleDataTask); // Stop the auto-increment thread
-
+        handler.removeCallbacks(vehicleDataTask);
         //disconnect bluetooth device
         this.bluetoothService.closeConnection();
 

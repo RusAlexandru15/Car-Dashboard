@@ -11,19 +11,6 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="82dp"
-        android:layout_height="48dp"
-        android:onClick="onBtnClick"
-        android:text="test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -31,13 +18,12 @@
 
         android:layout_marginTop="32dp"
         android:text="RPM"
-        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintHorizontal_bias="0.786"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/gaugerpm"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
         android:id="@+id/button2"
@@ -47,23 +33,24 @@
         android:text="connect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.724" />
+        app:layout_constraintVertical_bias="0.898" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="156dp"
         android:layout_marginTop="20dp"
         android:text="speed"
-        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gaugespeed"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.218" />
 
     <de.nitri.gauge.Gauge
         android:id="@+id/gaugespeed"
@@ -121,10 +108,10 @@
         android:text="RPM x100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
+        app:layout_constraintVertical_bias="0.675" />
 
     <TextView
         android:id="@+id/latitude"
@@ -155,13 +142,14 @@
         android:id="@+id/seg_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView1"
-        app:layout_constraintHorizontal_bias="0.541"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668" />
+        android:layout_marginStart="204dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/sl_imageView"
+        app:layout_constraintVertical_bias="0.977" />
 
     <ImageView
         android:id="@+id/sl_imageView"
@@ -169,10 +157,9 @@
         android:layout_height="78dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.626"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891"
+        app:layout_constraintVertical_bias="0.423"
         gauge:srcCompat="@drawable/full_white" />
 
 
